@@ -27,5 +27,11 @@ jobs:
           command: |
             source ~/.bashrc
             pytest -vs testkraken/tests/test_cpac.py
+      
       - store_artifacts:
-          path: /home/circleci/regtests
+          path: /home/circleci/regtests/outputs
+      - run:
+          name: Gather artifacts
+          command: tar -czvf /home/circleci/regtests/outputs.tar.gz /home/circleci/regtests/outputs
+      - store_artifacts:
+          path: /home/circleci/regtests/outputs.tar.gz
